@@ -1,8 +1,11 @@
 #pragma once
 #include <memory>
 
+
+
 class ArgumentParser;
 class Application;
+class HuffmanAlgorithm;
 
 class Runner
 {
@@ -21,6 +24,7 @@ public:
 private:
     bool ProcessArgs();
 
+    std::unique_ptr<HuffmanAlgorithm> huffman_algorithm;
     std::ostream                    &out;
     std::ostream                    &err;
     std::unique_ptr<Application>    app;

@@ -10,7 +10,9 @@ find_package(Boost 1.87 REQUIRED filesystem iostreams program_options)
 find_package(absl REQUIRED)
 
 set(SRC src/main.cpp
-    src/runner.cpp)
+    src/runner.cpp
+    src/application.cpp
+    src/algorithm/huffman_algorithm.cpp)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRC})
 

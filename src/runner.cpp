@@ -4,13 +4,16 @@
 
 #include "argparse.hpp"
 
+#include "huffman_algorithm.h"
+
 Runner::Runner(
     std::ostream &out,
     std::ostream &err,
     int argc,
     char **argv
 ) noexcept
-    :   out(out),
+    :   huffman_algorithm(std::make_unique<HuffmanAlgorithm>()),
+        out(out),
         err(err),
         app(nullptr),
         arg_parser(std::make_unique<ArgumentParser>(argc, argv))
@@ -48,7 +51,7 @@ bool Runner::ProcessArgs()
     {
         auto &target = args["file"].as<std::string>();
 
-        app = std::make_unique<Application>(out, err, target);
+        app = std::make_unique<Application>(*huffman_algorithm, out, err, target);
 
         result = true;
     }

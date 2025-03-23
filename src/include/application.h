@@ -1,32 +1,26 @@
 #pragma once
 #include <string>
+#include "interfaces.h"
 
 class Application
 {
 public:
     Application(
+        CompressAlgorithm<uint8_t> &algorithm,
         std::ostream &out,
         std::ostream &err,
         std::string_view target
-    ) noexcept
-        : target(target),
-            out(out),
-            err(err)
-    {
+    ) noexcept;
 
-    }
+    ~Application() noexcept;
 
-    ~Application() noexcept
-    {}
-
-    int Run()
-    {
-        out << "file name is " << target;
-
-        return 0;
-    }
+    /**
+     * Main compress application runner
+     */
+    int Run();
 
 private:
+    CompressAlgorithm<uint8_t> &algorithm;
     std::string_view target;
     std::ostream    &out;
     std::ostream    &err;
